@@ -55,18 +55,17 @@ clubs_info <- set_names(clubs_info, clubs$Club)
 write_rds(clubs_info, here("data", "clubs-info.rds"))
 
 
+market_value_to_numeric <- function(x) {
+  numeric_part <- as.numeric(str_extract(x, "\\d+(\\.\\d+)"))
+  multiplier_part <- str_extract(str_remove(x, "€"), "[kbnm]+$")
+  multiplier_value <- c("k" = 1e3, "m" = 1e6, "bn" = 1e9)[multiplier_part]
+  numeric_part * multiplier_value
+}
 
 
-clubs_info |> 
+clubs_info_prep <- clubs_info |> 
   compact() |> 
   map(function(x) mutate(x, market_value = as.character(market_value))) |>
-  bind_rows() |> 
-  View()
-
-tm_build_query_url("Újpest FC")
-tm_query_club("Újpest FC")
-tm_query_club("Borussia Dortmund")
-tm_query_club("AS Roma")
-
-
-
+  bind_rows(.id = "club_name2") |> 
+  mutate(market_value = market_value_to_numeric(market_value))
+  
