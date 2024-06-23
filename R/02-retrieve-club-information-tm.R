@@ -35,7 +35,7 @@ tm_query_club <- function(club_name, sleep = 1) {
   fmt_table$original_club_name <- club_name
 
   # Get the country of the league
-  country <- html_nodes(page, "tbody td img")[2] |>
+  country <- html_nodes(table_nodes[[which_table_node_id]], "tbody td img")[2] |>
     html_attr("title")
   fmt_table$league_country <- country
 
@@ -68,4 +68,10 @@ clubs_info_prep <- clubs_info |>
   map(function(x) mutate(x, market_value = as.character(market_value))) |>
   bind_rows(.id = "club_name2") |> 
   mutate(market_value = market_value_to_numeric(market_value))
-  
+
+
+# Add AS Monaco to Ligue 1 / France
+clubs_info_prep <- clubs_info_prep |> 
+  mutate(league_country = ifelse(club_name2 == "AS Monaco", "France", league_country))
+
+write_rds(clubs_info_prep, here("data", "clubs-info-prep.rds"))  
