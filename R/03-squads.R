@@ -34,7 +34,6 @@ players_updated <- players_updated |>
     TRUE ~ club_league
   ))
 
-
 write_rds(players_updated, "players-updated.rds")
 
 
