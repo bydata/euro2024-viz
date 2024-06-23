@@ -1,0 +1,73 @@
+Germany 🇩🇪:#000000
+Scotland 🏴:#005EB8
+Hungary 🇭🇺:#C8102E
+Switzerland 🇨🇭:#D52B1E
+Spain 🇪🇸:#F1BF00
+Croatia 🇭🇷:#171796
+Albania 🇦🇱:#E41B17
+Italy 🇮🇹:#008C45
+Slovenia 🇸🇮:#005DA4
+England 🏴:#CC0000
+Denmark 🇩🇰:#C60C30
+Serbia 🇷🇸:#C6363C
+Poland 🇵🇱:#DC143C
+Netherlands 🇳🇱:#21468B
+Austria 🇦🇹:#ED2939
+France 🇫🇷:#0055A4
+Belgium 🇧🇪:#EF3340
+Slovakia 🇸🇰:#005BAC
+Romania 🇷🇴:#FCD116
+Ukraine 🇺🇦:#FFD800
+Turkiye 🇹🇷:#E30A17
+Georgia 🇬🇪:#BC002D
+Portugal 🇵🇹:#006A4E
+Czech Republic 🇨🇿:#D7141A
+Germany :#000000
+Scotland :#005EB8
+Hungary :#C8102E
+Switzerland :#D52B1E
+Spain :#F1BF00
+Croatia :#171796
+Albania :#E41B17
+Italy :#008C45
+Slovenia :#005DA4
+England :#CC0000
+Denmark :#C60C30
+Serbia :#C6363C
+Poland :#DC143C
+Netherlands :#21468B
+Austria :#ED2939
+France :#0055A4
+Belgium :#EF3340
+Slovakia :#005BAC
+Romania :#FCD116
+Ukraine :#FFD800
+Turkiye :#E30A17
+Georgia :#BC002D
+Portugal :#006A4E
+Czech Republic :#D7141A
+Saudi Arabia :#006C35
+United States :#3C3B6E
+Cyprus :#D57800
+Korea, South :#003478
+Monaco :#CE1126
+Greece :#0D5EAF
+Bulgaria :#00966E
+Türkiye :#E30A17
+Russia :#0033A0
+United Arab Emirates :#00732F
+Qatar :#8A1538
+Azerbaijan :#00B2E3
+Iran :#DA0000
+Premier League:#AAAAAA
+Championship:#CCCCCC
+League One:#DDDDDD
+1. Bundesliga:#AAAAAA
+2. Bundesliga:#CCCCCC
+Ligue 1:#AAAAAA
+Ligue 2:#CCCCCC
+Serie A:#AAAAAA
+Serie B:#CCCCCC
+LaLiga :#AAAAAA
+LaLiga2 :#CCCCCC
+
