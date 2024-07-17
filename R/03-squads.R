@@ -47,6 +47,10 @@ country_2_league_country <- players_updated |>
 league_country_2_club_league <- players_updated |> 
   count(from = paste(league_country, ""), to = club_league, name = "n_players", sort = TRUE)
 
+## League country to club
+league_country_2_club <- players_updated |> 
+  count(from = paste(league_country, ""), to = Club, name = "n_players", sort = TRUE)
+
 ## Combine the connection data frames
 connections <- bind_rows(country_2_league_country, league_country_2_club_league) |> 
   arrange(from, to)
@@ -243,5 +247,83 @@ players_updated |>
   inner_join(position_mapping, by = join_by(Position)) |> 
   select(Name, Country, position_group, position_detail, Age:MarketValue, 
          club_league, league_country) |> 
+  clipr::write_clip()
+
+
+players_updated |> 
+  select(Name, Country, Age) |> 
+  mutate(
+    CountryFlag = flag_emojis[Country],
+    CountryFlag = paste(Country, ifelse(is.na(CountryFlag), "", CountryFlag))
+  ) |> 
+  clipr::write_clip()
+  
+
+
+# Connections for the ENG + ESP squads for the final, including the club ------
+## Using some of the code from above
+
+## Player country to league country
+country_2_league_country_for_final <- players_updated |> 
+  filter(Country %in% c("England", "Spain")) |> 
+  count(from = Country, to = paste(league_country, ""), name = "n_players", sort = TRUE)
+
+## League country to club
+league_country_2_club_for_final <- players_updated |> 
+  filter(Country %in% c("England", "Spain")) |> 
+  count(from = paste(league_country, ""), to = Club, name = "n_players", sort = TRUE)
+
+## Player country to league
+country_2_league_for_final <- players_updated |> 
+  filter(Country %in% c("England", "Spain")) |> 
+  count(from = Country, to = club_league, name = "n_players", sort = TRUE)
+
+## League to club
+league_2_club_for_final <- players_updated |> 
+  filter(Country %in% c("England", "Spain")) |> 
+  count(from = club_league, to = Club, name = "n_players", sort = TRUE)
+
+
+## Combine the connection data frames
+connections_for_final <- bind_rows(country_2_league_country_for_final, league_country_2_club_for_final) |> 
+  arrange(from, to) |> 
+  mutate(
+    from_flag = flag_emojis[from],
+    # from = ifelse(is.na(from_flag), from, from_flag)
+    from = paste(from, ifelse(is.na(from_flag), "", from_flag))
+  )
+clipr::write_clip(connections_for_final)
+
+
+## Combine the connection data frames
+
+### Version with league countries
+connections_for_final <- bind_rows(country_2_league_country_for_final, league_country_2_club_for_final) |> 
+  arrange(from, to) |> 
+  mutate(
+    from_flag = flag_emojis[from],
+    # from = ifelse(is.na(from_flag), from, from_flag)
+    from = paste(from, ifelse(is.na(from_flag), "", from_flag))
+  )
+clipr::write_clip(connections_for_final)
+
+
+### Version with league names
+connections_for_final <- bind_rows(country_2_league_for_final, league_2_club_for_final) |> 
+  arrange(from, to) |> 
+  mutate(
+    from_flag = flag_emojis[from],
+    from = paste(from, ifelse(is.na(from_flag), "", from_flag))
+  ) |> 
+  add_count(from, wt = n_players, name = "group_count") |> 
+  arrange(-group_count, -n_players)
+clipr::write_clip(connections_for_final)
+
+
+## Write a list of clubs with grey as the custom color for Flourish
+connections_for_final |> 
+  filter(!to %in% c("England ", "Spain ", "Germany ", "Saudi Arabia ")) |> 
+  distinct(to) |> 
+  transmute(custom_color = paste(to, "#D2D2D2", sep = ":")) |> 
   clipr::write_clip()
 
